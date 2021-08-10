@@ -83,7 +83,7 @@ uint8_t* Data::generateByteMsg(uint32_t id, uint32_t timestamp, uint16_t type) {
 
     uint8_t headerLenBytes = 10; /**< Header data len */
     uint8_t dataLenBytes = 14; /**< Default data len */
-    byteMsgLen = headerLenBytes + 1 + dataLenBytes;
+    byteMsgLen = headerLenBytes + dataLenBytes;
     byteMsg = new uint8_t[byteMsgLen];
 
     int index = 0;
@@ -91,8 +91,6 @@ uint8_t* Data::generateByteMsg(uint32_t id, uint32_t timestamp, uint16_t type) {
     index = saveValueOnByteArray(byteMsg, index, id);
     index = saveValueOnByteArray(byteMsg, index, timestamp);
     index = saveValueOnByteArray(byteMsg, index, type);
-    // Data Len
-    index = saveValueOnByteArray(byteMsg, index, dataLenBytes);
     // Data
     index = saveValueOnByteArray(byteMsg, index, data.odometer);
     index = saveValueOnByteArray(byteMsg, index, data.hourmeter);
@@ -108,7 +106,7 @@ uint8_t* Data::generateByteMsg(uint32_t id, uint32_t timestamp, uint16_t type, u
 
     uint8_t headerLenBytes = 10;
     uint8_t dataLenBytes = 14 + 4;
-    byteMsgLen = headerLenBytes + 1 + dataLenBytes;
+    byteMsgLen = headerLenBytes + dataLenBytes;
     byteMsg = new uint8_t[headerLenBytes];
 
     int index = 0;
@@ -116,8 +114,6 @@ uint8_t* Data::generateByteMsg(uint32_t id, uint32_t timestamp, uint16_t type, u
     index = saveValueOnByteArray(byteMsg, index, id);
     index = saveValueOnByteArray(byteMsg, index, timestamp);
     index = saveValueOnByteArray(byteMsg, index, type);
-    // Data Len
-    index = saveValueOnByteArray(byteMsg, index, dataLenBytes);
     // ECU Data
     index = saveValueOnByteArray(byteMsg, index, data.odometer);
     index = saveValueOnByteArray(byteMsg, index, data.hourmeter);
